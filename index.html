@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>이제 더이상 녹을 뇌도 없다.</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+  <style>
+    :root {
+      --ink:       #1D1D1F;
+      --ink-2:     #333336;
+      --ink-3:     #6E6E73;
+      --bg:        #FFFFFF;
+      --surface:   #EDEDF2;
+      --accent:    #0071E3;
+    }
+
+    html, body { background: var(--bg); }
+
+    .reveal {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+                   "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+      font-weight: 400;
+      font-feature-settings: "ss06", "ss01", "kern";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .reveal .backgrounds { background: var(--bg); }
+    .reveal .slides { text-align: center; }
+    .reveal section { padding: 0; }
+
+    .reveal .controls { color: var(--ink-3); }
+    .reveal .controls button { color: var(--ink-3); }
+
+    /* ========== 레이아웃 ========== */
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 7% 8%;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .cover {
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+    }
+
+    /* ========== 타이포 ========== */
+
+    .eyebrow {
+      font-size: 0.48em;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink-3);
+      margin: 0 0 1.6em;
+    }
+
+    .display {
+      font-size: 2.4em;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.022em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .display-xl {
+      font-size: 2.7em;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .display-impact {
+      font-size: 4em;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .display .accent,
+    .display-xl .accent,
+    .display-impact .accent {
+      color: var(--accent);
+    }
+
+    .body {
+      font-size: 0.65em;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--ink-2);
+      max-width: 38em;
+      margin: 1.6em auto 0;
+    }
+
+    .body .em { color: var(--ink); font-weight: 500; }
+    .body .accent { color: var(--accent); font-weight: 500; }
+
+    .footnote {
+      font-size: 0.4em;
+      font-weight: 400;
+      color: var(--ink-3);
+      margin-top: 1.6em;
+      letter-spacing: 0;
+    }
+
+    /* 책 표지 — Apple 신제품 발표 느낌 */
+    .booktitle {
+      font-size: 0.4em;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      margin: 0 0 1em;
+    }
+    .booksub {
+      font-size: 0.55em;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--ink-3);
+      margin-top: 1.6em;
+    }
+
+    /* ========== 표지 (Cover) ========== */
+    .cover-slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6% 5%;
+      box-sizing: border-box;
+    }
+
+    .cover-line-1 {
+      font-size: 2.8em;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0;
+      opacity: 0.78;
+    }
+
+    .cover-line-2 {
+      font-size: 4em;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 0.15em 0 0;
+    }
+
+    .cover-subtitle {
+      font-size: 0.5em;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 2.6em;
+      letter-spacing: 0.02em;
+    }
+
+    .cover-meta {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.35em;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+    }
+
+    /* 반전 슬라이드용 — 정체 공개 */
+    .reveal-sub {
+      font-size: 0.45em;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink-3);
+      margin: 1.4em 0 0;
+    }
+    .reveal-sub em {
+      font-style: normal;
+      font-family: 'Pretendard Variable', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    /* 질문 리스트 */
+    .questions {
+      margin: 1.8em auto 0;
+      max-width: 42em;
+      text-align: left;
+      list-style: none;
+      padding: 0;
+    }
+    .questions li {
+      font-size: 0.6em;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--ink-2);
+      margin: 0;
+      padding: 0.95em 0.4em;
+      border-bottom: 1px solid var(--surface);
+    }
+    .questions li:last-child { border-bottom: none; }
+    .questions li .em { color: var(--ink); font-weight: 500; }
+
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============================================================ -->
+      <!-- 01. 표지 — 이제 더이상 녹을 뇌도 없다.                         -->
+      <!-- ============================================================ -->
+      <section data-background-color="#18181A">
+        <div class="cover-slide">
+          <div class="container" style="max-width: 1320px;">
+            <h1 class="cover-line-1">이제 더이상</h1>
+            <h1 class="cover-line-2">녹을 뇌도 없다.</h1>
+            <p class="cover-subtitle">〈니체 인생수업〉 독후감</p>
+          </div>
+          <div class="cover-meta">
+            <span>TPM 팀 미팅</span>
+            <span>2026</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART 1 — 갑자기 명언 11개 (책/챕터/출처 표시 없음)              -->
+      <!-- ============================================================ -->
+
+      <!-- 02. 명언 1 — 나 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-xl">
+              &lsquo;나&rsquo;를 구별하는 일은,<br/>
+              오직 &lsquo;나&rsquo;에 의해서만 가능합니다.
+            </h1>
+            <p class="body">나를 가장 잘 아는 건, 결국 나니까요.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03. 명언 2 — 걸음 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-xl">
+              사람은 자주 걷다가,<br/>
+              나름의 답을 찾습니다.
+            </h1>
+            <p class="body">그리고 그렇게 얻은 것은 — 지혜가 됩니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. 명언 3 — 결정 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-impact">
+              우리는,<br/>
+              너무 빨리<br/>
+              결정하고 있습니다.
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05. 명언 4 — 침묵 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-xl">
+              인간은 침묵해선 안 되는<br/>
+              순간에만 이야기해야 합니다.
+            </h1>
+            <p class="body">그 밖의 모든 이야기는 — 쓸데없는 이야기일 뿐입니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06. 명언 5 — 책장 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-impact">
+              책장을 넘기는 데,<br/>
+              만족하지 마세요.
+            </h1>
+            <p class="body">속도와 양으로 책을 측정하지 마세요.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07. 명언 6 — 아래만 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-xl">
+              아래만 내려다보는 사람은,<br/>
+              어리석은 사람입니다.
+            </h1>
+            <p class="body">내가 오른 산이, 세상의 유일한 산은 아니니까요.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08. 명언 7 — 낙관 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-impact">
+              비관적일수록,<br/>
+              낙관하세요.
+            </h1>
+            <p class="body">같은 일도, 다르게 해석할 수 있습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09. 명언 8 — 자기 사랑 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-xl">
+              친구보다 먼저,<br/>
+              자기 자신을 사랑하세요.
+            </h1>
+            <p class="body">어쩌면, 가장 어려운 일일지도 모르겠습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. 명언 9 — 비난 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-xl">
+              비난하다 보면,<br/>
+              늘 나를 드러내게 됩니다.
+            </h1>
+            <p class="body">타인을 향한 과한 비난은 — 나의 가장 추한 부분을 드러냅니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. 명언 10 — 두려움 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-impact">
+              두려움의 대상을,<br/>
+              사랑해보세요.
+            </h1>
+            <p class="body">직면해보지 않고는, 좋은지 나쁜지 알 수 없으니까요.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. 명언 11 — 가벼움 + 해리님 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-xl">
+              어떤 사람들은 생각이 깊어서,<br/>
+              겉으로는 가벼워 보입니다.
+            </h1>
+            <p class="body">예를 들면 — 우리 팀의 <span class="em">해리님</span>처럼요.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART 2 — 반전                                                  -->
+      <!-- ============================================================ -->
+
+      <!-- 13. 빌드업 (...) -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display-impact" style="color: var(--ink-3);">
+              .&nbsp;&nbsp;.&nbsp;&nbsp;.
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14. 반전 — 사실 다 니체 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <p class="eyebrow">방금까지의 모든 말은, 사실</p>
+            <h1 class="display-impact">
+              <span class="accent">니체.</span>
+            </h1>
+            <p class="reveal-sub"><em>Friedrich Nietzsche, 1844–1900</em></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART 3 — 책 공개                                               -->
+      <!-- ============================================================ -->
+
+      <!-- 15. 책 공개 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <p class="booktitle">지난 주말, 한 권 읽었습니다</p>
+            <h1 class="display-xl">
+              〈니체 인생수업〉
+            </h1>
+            <p class="booksub">니체가 세상에 남긴 66가지 인생지혜</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART 4 — 왜 읽었나                                              -->
+      <!-- ============================================================ -->
+
+      <!-- 16. 글 읽고 쓰기 어려움 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <p class="eyebrow">사실, 요즘</p>
+            <h1 class="display-xl">
+              <span class="accent">글을 읽고 쓰는 게,</span><br/>
+              너무 어렵습니다.
+            </h1>
+            <p class="body">
+              IT 업계에서 9년을 일하다 보니 어느 순간 손으로 글 쓰는 일이 사라졌습니다.
+              짧은 메모는 되는데, 긴 글은 더 이상 써지지 않습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 17. 시작조차 안 함 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <p class="eyebrow">그리고 이제는</p>
+            <h1 class="display-xl">
+              긴 글은,<br/>
+              <span class="accent">시작조차</span> 하지 않습니다.
+            </h1>
+            <p class="body">
+              쇼츠의 세계, AI의 시대 — 한 번 시작하면 손이 자연스럽게 숏폼으로 옮겨갑니다.
+              어차피 끝을 못 본다는 걸 알기 때문에, 시작조차 안 하게 됩니다.
+              일할 때도 마찬가지입니다 — 긴 문서는 클로드가 다 요약해 줍니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 18. 연습 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <p class="eyebrow">그래서</p>
+            <h1 class="display-xl">
+              긴 글 읽는 연습을,<br/>
+              해보고 싶었습니다.
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART 5 — 그래서 이 자료의 정체                                   -->
+      <!-- ============================================================ -->
+
+      <!-- 19. 이 자료가 그 정리 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <p class="eyebrow">그리고</p>
+            <h1 class="display-xl">
+              책에서 와닿은 내용을 정리한 게 —<br/>
+              <span class="accent">바로 이 자료</span>입니다.
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART 6 — 공감                                                  -->
+      <!-- ============================================================ -->
+
+      <!-- 20. 다들 잘하시는데 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <p class="eyebrow">그런데</p>
+            <h1 class="display-xl">
+              다들 독서를<br/>
+              참 많이 하시잖아요.
+            </h1>
+            <p class="body">그 모습이 부러워서, 저도 따라 해보고 싶었습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 21. 여전히 어렵다 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <p class="eyebrow">그런데</p>
+            <h1 class="display-impact">
+              <span class="accent">여전히,</span><br/>
+              어렵습니다.
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART 7 — 토론                                                  -->
+      <!-- ============================================================ -->
+
+      <!-- 22. 같이 이야기해보고 싶었습니다 -->
+      <section data-background-color="#FFFFFF">
+        <div class="slide">
+          <div class="container">
+            <h1 class="display">
+              그래서 오늘, 여러분과 같이<br/>
+              <span class="accent">이야기해보고 싶었습니다.</span>
+            </h1>
+            <ul class="questions">
+              <li>어떤 <span class="em">시간</span>에 책을 읽으세요?</li>
+              <li>어떤 <span class="em">장소</span>에서 읽으세요?</li>
+              <li>어떤 <span class="em">종류</span>의 책을 좋아하세요?</li>
+              <li><span class="em">마지막으로 읽은 책</span>은 무엇인가요?</li>
+              <li>일상이나 업무 중에, 긴 글 읽기 어려움은 없으세요?</li>
+              <li>이게 — <span class="em">저만의 고민</span>일까요?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      transition: 'fade',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      controls: true,
+      progress: false,
+      slideNumber: false,
+      keyboard: true,
+      center: false,
+      width: 1440,
+      height: 900,
+      margin: 0,
+    });
+  </script>
+</body>
+</html>
