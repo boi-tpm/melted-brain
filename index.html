@@ -35,7 +35,11 @@
 
     .reveal .backgrounds { background: var(--bg); }
     .reveal .slides { text-align: center; }
-    .reveal section { padding: 0; }
+    .reveal section {
+      padding: 0;
+      height: 100%;
+      box-sizing: border-box;
+    }
 
     .reveal .controls { color: var(--ink-3); }
     .reveal .controls button { color: var(--ink-3); }
@@ -51,6 +55,7 @@
       align-items: center;
       padding: 7% 8%;
       box-sizing: border-box;
+      position: relative;
     }
 
     .container {
@@ -154,6 +159,7 @@
       align-items: center;
       padding: 6% 5%;
       box-sizing: border-box;
+      position: relative;
     }
 
     .cover-line-1 {
