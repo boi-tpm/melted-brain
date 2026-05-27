@@ -218,6 +218,47 @@
       letter-spacing: 0.02em;
     }
 
+    /* ========== 발표자 본인 메모 (.note) ========== */
+    .note {
+      margin: 2.4em auto 0;
+      padding: 1.2em 1.6em 1.3em;
+      background: #F5F5F7;
+      border-radius: 16px;
+      text-align: left;
+      max-width: 780px;
+      box-sizing: border-box;
+    }
+
+    .note-label {
+      display: inline-block;
+      font-size: 0.32em;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      margin: 0 0 0.9em;
+    }
+
+    .note-q {
+      font-size: 0.55em;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+      margin: 0 0 0.5em;
+      letter-spacing: -0.01em;
+    }
+
+    .note-a {
+      font-size: 0.5em;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--ink-2);
+      margin: 0;
+      letter-spacing: -0.005em;
+    }
+
+    .note-a .em { color: var(--ink); font-weight: 500; }
+
     /* 질문 리스트 */
     .questions {
       margin: 1.8em auto 0;
@@ -273,6 +314,11 @@
               오직 &lsquo;나&rsquo;에 의해서만 가능합니다.
             </h1>
             <p class="body">나를 가장 잘 아는 건, 결국 나니까요.</p>
+            <aside class="note">
+              <span class="note-label">내 생각</span>
+              <p class="note-q">나는 어떤 사람일까?</p>
+              <p class="note-a">ISTJ의 인간화, 철 안 든 서른다섯, 요즘 물욕 충만, 귀여움이 세상을 지배한다.</p>
+            </aside>
           </div>
         </div>
       </section>
