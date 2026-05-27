@@ -218,25 +218,30 @@
       letter-spacing: 0.02em;
     }
 
-    /* ========== 발표자 본인 메모 (.note) ========== */
+    /* ========== 발표자 본인 메모 (.note) — 말풍선 ========== */
     .note {
-      margin: 2.4em auto 0;
-      padding: 1.2em 1.6em 1.3em;
+      position: relative;
+      margin: 2.6em auto 0;
+      padding: 1.4em 1.8em 1.5em;
       background: #F5F5F7;
-      border-radius: 16px;
+      border-radius: 22px;
       text-align: left;
-      max-width: 780px;
+      max-width: 720px;
       box-sizing: border-box;
     }
 
-    .note-label {
-      display: inline-block;
-      font-size: 0.32em;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      color: var(--ink-3);
-      text-transform: uppercase;
-      margin: 0 0 0.9em;
+    /* 말풍선 꼬리 — 상단 중앙에서 위로 ▲ */
+    .note::before {
+      content: '';
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #F5F5F7;
     }
 
     .note-q {
@@ -244,7 +249,7 @@
       font-weight: 600;
       color: var(--ink);
       line-height: 1.4;
-      margin: 0 0 0.5em;
+      margin: 0 0 0.7em;
       letter-spacing: -0.01em;
     }
 
@@ -255,6 +260,16 @@
       color: var(--ink-2);
       margin: 0;
       letter-spacing: -0.005em;
+    }
+
+    .note-a + .note-a {
+      margin-top: 0.25em;
+    }
+
+    .note-key {
+      font-weight: 600;
+      color: var(--ink);
+      margin-right: 0.35em;
     }
 
     .note-a .em { color: var(--ink); font-weight: 500; }
@@ -315,9 +330,9 @@
             </h1>
             <p class="body">나를 가장 잘 아는 건, 결국 나니까요.</p>
             <aside class="note">
-              <span class="note-label">내 생각</span>
-              <p class="note-q">나는 어떤 사람일까?</p>
-              <p class="note-a">ISTJ의 인간화, 철 안 든 서른다섯, 요즘 물욕 충만, 귀여움이 세상을 지배한다.</p>
+              <p class="note-q">나는 나에 대해 얼마나 알고 있을까?</p>
+              <p class="note-a"><span class="note-key">아는 것:</span>ISTJ, 겜붕이, 쓸데없는 물욕, 소확행 마니아</p>
+              <p class="note-a"><span class="note-key">모르는 것:</span>결혼과 자녀 계획, 내가 바라는 10년 뒤 내 모습</p>
             </aside>
           </div>
         </div>
